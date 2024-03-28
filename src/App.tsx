@@ -74,8 +74,8 @@ function App() {
               <button
                 onClick={() => {
                   setDropState((prev) => ({
-                    type: prev.type === "dashboard" ? "" : "dashboard",
-                    status: !prev.status,
+                    type: prev.type.length ? "" : "dashboard",
+                    status: prev.status ? false : true,
                   }));
                 }}
               >
@@ -151,25 +151,68 @@ function App() {
                 </svg>
                 Messages
               </button>
-              <button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="lucide lucide-chevron-down"
-                >
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
+              <button
+                onClick={() => {
+                  setDropState((prev) => ({
+                    type: prev.type.length ? "" : "messages",
+                    status: prev.status ? false : true,
+                  }));
+                }}
+              >
+                {dropState.status && dropState.type === "messages" ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="lucide lucide-chevron-up"
+                  >
+                    <path d="m18 15-6-6-6 6" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="lucide lucide-chevron-down"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                )}
               </button>
             </div>
-            <div className="flex justify-between items-center mt-5">
-              <button className="tracking-wider text-sm flex items-center gap-x-1">
+            {dropState.status && dropState.type === "messages" && (
+              <div>
+                <div className="flex justify-between text-zinc-600 hover:text-black items-center mt-3">
+                  <button className="ml-7 tracking-wider text-sm flex items-center gap-x-1">
+                    Active
+                  </button>
+                </div>
+                <div className="flex justify-between text-zinc-600 hover:text-black items-center mt-3">
+                  <button className="ml-7 tracking-wider text-sm flex items-center gap-x-1">
+                    Requests
+                  </button>
+                </div>
+                <div className="flex justify-between text-zinc-600 hover:text-black items-center mt-3">
+                  <button className="ml-7 tracking-wider text-sm flex items-center gap-x-1">
+                    Unseen
+                  </button>
+                </div>
+              </div>
+            )}
+            <div className="flex justify-between text-zinc-400 items-center mt-5">
+              <button className="tracking-wider text-sm flex items-center gap-x-1 disabled cursor-not-allowed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -180,7 +223,7 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-goal text-zinc-800"
+                  className="lucide lucide-goal text-zinc-400"
                 >
                   <path d="M12 13V2l8 4-8 4" />
                   <path d="M20.561 10.222a9 9 0 1 1-12.55-5.29" />
@@ -199,14 +242,14 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-chevron-down"
+                  className="lucide lucide-chevron-down text-zinc-400 disabled cursor-not-allowed"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </button>
             </div>
-            <div className="flex justify-between items-center mt-5">
-              <button className="tracking-wider text-sm flex items-center gap-x-1">
+            <div className="flex justify-between items-center text-zinc-400 mt-5">
+              <button className="tracking-wider text-sm flex items-center gap-x-1 disabled cursor-not-allowed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -217,7 +260,7 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-goal text-zinc-800"
+                  className="lucide lucide-goal text-zinc-400"
                 >
                   <path d="M12 13V2l8 4-8 4" />
                   <path d="M20.561 10.222a9 9 0 1 1-12.55-5.29" />
@@ -236,7 +279,7 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-chevron-down"
+                  className="lucide lucide-chevron-down disabled text-zinc-400 cursor-not-allowed"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
@@ -247,8 +290,8 @@ function App() {
             <p className="uppercase tracking-widest text-zinc-400 text-sm font-semibold">
               Pages
             </p>
-            <div className="flex justify-between items-center mt-5">
-              <button className="tracking-wider text-sm flex items-center gap-x-1">
+            <div className="flex justify-between items-center text-zinc-400 mt-5">
+              <button className="tracking-wider text-sm flex  items-center gap-x-1 disabled cursor-not-allowed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -259,7 +302,7 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-goal text-zinc-800"
+                  className="lucide lucide-goal text-zinc-400"
                 >
                   <path d="M12 13V2l8 4-8 4" />
                   <path d="M20.561 10.222a9 9 0 1 1-12.55-5.29" />
@@ -278,14 +321,14 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-chevron-down"
+                  className="lucide lucide-chevron-down text-zinc-400 disabled cursor-not-allowed"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </button>
             </div>
-            <div className="flex justify-between items-center mt-5">
-              <button className="tracking-wider text-sm flex items-center gap-x-1">
+            <div className="flex justify-between items-center mt-5 text-zinc-400 ">
+              <button className="tracking-wider text-sm flex items-center gap-x-1 disabled cursor-not-allowed">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -296,7 +339,7 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-goal text-zinc-800"
+                  className="lucide lucide-goal text-zinc-400 disabled cursor-not-allowed"
                 >
                   <path d="M12 13V2l8 4-8 4" />
                   <path d="M20.561 10.222a9 9 0 1 1-12.55-5.29" />
@@ -315,7 +358,7 @@ function App() {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  className="lucide lucide-chevron-down"
+                  className="lucide lucide-chevron-down disabled text-zinc-400 cursor-not-allowed"
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
@@ -324,7 +367,61 @@ function App() {
           </div>
         </div>
         <div className="h-[0.5px] w-full bg-neutral-200"></div>
-        <div className="h-[50px] w-full"></div>
+        <div className="h-[50px] w-full flex items-center justify-between px-6">
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="lucide lucide-settings-2 text-neutral-500"
+            >
+              <path d="M20 7h-9" />
+              <path d="M14 17H5" />
+              <circle cx="17" cy="17" r="3" />
+              <circle cx="7" cy="7" r="3" />
+            </svg>
+          </button>
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="lucide lucide-log-out text-neutral-500"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" x2="9" y1="12" y2="12" />
+            </svg>
+          </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-globe text-neutral-500"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+          </svg>
+        </div>
       </nav>
       <div className="bg-zinc-100 ml-0 md:ml-[250px] h-full grow">
         <div className="md:hidden bg-white h-[70px] flex justify-between items-center pl-5 pr-5 sm:pl-8 sm:pr-8">
@@ -341,11 +438,67 @@ function App() {
             placeholder="Search..."
             className="h-full grow rounded-md border px-4 text-sm text-neutral-500"
           />
-          <div className="hidden md:flex gap-x-2 ml-4">
-            <div className="h-full w-[35px] bg-zinc-200"></div>
-            <div className="h-full w-[35px] bg-zinc-200"></div>
-            <div className="h-full w-[35px] bg-zinc-200"></div>
-            <div className="h-full w-[35px] bg-zinc-200"></div>
+          <div className="hidden md:flex md:justify-center md:items-center gap-x-4 ml-4">
+            <button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-bell text-neutral-500"
+              >
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+              </svg>
+            </button>
+            <button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-calendar-range text-neutral-500"
+              >
+                <rect width="18" height="18" x="3" y="4" rx="2" />
+                <path d="M16 2v4" />
+                <path d="M3 10h18" />
+                <path d="M8 2v4" />
+                <path d="M17 14h-6" />
+                <path d="M13 18H7" />
+                <path d="M7 14h.01" />
+                <path d="M17 18h.01" />
+              </svg>
+            </button>
+            <button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-layout-grid text-neutral-500"
+              >
+                <rect width="7" height="7" x="3" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="14" rx="1" />
+                <rect width="7" height="7" x="3" y="14" rx="1" />
+              </svg>
+            </button>
+            <div className="bg-zinc-500 w-[40px] rounded-full h-[40px]"></div>
           </div>
         </nav>
         <div className="grow pl-5 pr-5 sm:pl-8 sm:pr-8">
