@@ -5,6 +5,7 @@ import Title from "./Title";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./context/store";
+import Grid from "./component/dataGrid";
 
 // Generate Sales Data
 function createData(
@@ -565,9 +566,7 @@ function App() {
             </div>
           </div>
           <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] drop-shadow-sm">
-            <div className="px-8 pt-6">
-              <Title>Performance</Title>
-            </div>
+            <Title>Performance</Title>
             <div className="h-[1px] w-full bg-neutral-200"></div>
             <div className="h-[350px] px-4 mt-7 mb-[100px] flex flex-col justify-center items-center">
               <LineChart
@@ -595,7 +594,7 @@ function App() {
                   {
                     dataKey: "amount",
                     showMark: false,
-                    color: theme.palette.primary.light,
+                    color: theme.palette.primary.dark,
                   },
                 ]}
                 sx={{
@@ -613,7 +612,9 @@ function App() {
               <p className="text-sm text-neutral-600">Facebook</p>
             </div>
           </div>
-          <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] mb-8 drop-shadow-sm"></div>
+          <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] mb-8 drop-shadow-sm">
+            <Grid />
+          </div>
         </div>
       </div>
     </main>
