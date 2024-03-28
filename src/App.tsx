@@ -428,8 +428,8 @@ function App() {
           <a href="/" className="text-3xl font-semibold">
             Clonify
           </a>
-          <div className="h-[50px] group flex items-center justify-center w-[50px] bg-zinc-200 rounded-full">
-            <button className="group-hover:cursor-pointer">DP</button>
+          <div className="h-[50px] group flex items-center justify-center w-[50px] bg-zinc-400 rounded-full">
+            <button className="group-hover:cursor-pointer"></button>
           </div>
         </div>
         <nav className="w-full h-[63px] flex bg-white drop-shadow-sm py-[10px] pl-5 pr-5 sm:pl-8 sm:pr-8">
@@ -498,7 +498,7 @@ function App() {
                 <rect width="7" height="7" x="3" y="14" rx="1" />
               </svg>
             </button>
-            <div className="bg-zinc-500 w-[40px] rounded-full h-[40px]"></div>
+            <div className="bg-zinc-400 w-[40px] rounded-full h-[40px]"></div>
           </div>
         </nav>
         <div className="grow pl-5 pr-5 sm:pl-8 sm:pr-8">
@@ -569,7 +569,7 @@ function App() {
               <Title>Performance</Title>
             </div>
             <div className="h-[1px] w-full bg-neutral-200"></div>
-            <div className="h-[350px] px-4 mt-7 mb-[100px]">
+            <div className="h-[350px] px-4 mt-7 mb-[100px] flex flex-col justify-center items-center">
               <LineChart
                 dataset={data}
                 xAxis={[
@@ -610,6 +610,7 @@ function App() {
                   },
                 }}
               />
+              <p className="text-sm text-neutral-600">Facebook</p>
             </div>
           </div>
           <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] mb-8 drop-shadow-sm"></div>
