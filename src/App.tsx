@@ -25,19 +25,19 @@ function App() {
   const theme = useTheme();
   return (
     <main className="flex h-full w-screen">
-      <nav className="w-[250px] h-screen fixed flex flex-col">
+      <nav className="w-0 md:w-[250px] h-screen fixed hidden md:flex flex-col">
         <div className="w-full grow"></div>
         <div className="h-[0.5px] w-full bg-neutral-200"></div>
         <div className="h-[50px] w-full"></div>
       </nav>
-      <div className="bg-zinc-100 ml-[250px] h-full grow">
+      <div className="bg-zinc-100 ml-2 md:ml-[250px] h-full grow">
         <nav className="w-full h-[63px] border flex bg-white drop-shadow-sm py-[10px] pl-8 pr-8">
           <input
             type="text"
             placeholder="Search..."
             className="h-full grow rounded-md border px-4 text-sm text-neutral-500"
           />
-          <div className="flex space-x-2 ml-4">
+          <div className="hidden md:flex gap-x-2 ml-4">
             <div className="h-full w-[35px] bg-zinc-200"></div>
             <div className="h-full w-[35px] bg-zinc-200"></div>
             <div className="h-full w-[35px] bg-zinc-200"></div>
@@ -45,22 +45,24 @@ function App() {
           </div>
         </nav>
         <div className="grow pl-8 pr-8">
-          <div className="bg-neutral-800 mt-8 text-white h-[130px] px-8 rounded-2xl flex items-center justify-between">
+          <div className="bg-neutral-800 mt-8 text-white h-[200px] sm:h-[130px] px-8 rounded-2xl flex sm:flex-row flex-col items-center justify-center gap-y-[20px] sm:justify-between">
             <div className="flex flex-col">
-              <h1 className="text-3xl">Unlock Premium stats</h1>
+              <h1 className="text-3xl sm:text-2xl lg:text-3xl">
+                Unlock Premium stats
+              </h1>
               <p className="pt-2 text-sm font-light text-neutral-200">
                 Get up to 10 TB of storage for a limited time
               </p>
             </div>
-            <button className="h-[48px] bg-white text-black w-[150px] rounded-full hover:shadow-lg hover:bg-neutral-100">
+            <button className="sm:ml-8 w-[120px] h-[48px] bg-white text-black lg:w-[150px] rounded-full hover:shadow-lg hover:bg-neutral-100">
               Upgrade
             </button>
           </div>
-          <div className="w-full mt-8 flex justify-between">
-            <div className="w-[280px] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
-            <div className="w-[280px] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
-            <div className="w-[280px] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
-            <div className="w-[280px] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
+          <div className="w-full mt-8 flex gap-y-[20px] sm:gap-y-[33px] justify-between flex-wrap">
+            <div className="w-full sm:w-[48%] lg:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
+            <div className="w-full sm:w-[48%] lg:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
+            <div className="w-full sm:w-[48%] lg:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
+            <div className="w-full sm:w-[48%] lg:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
           </div>
           <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] drop-shadow-sm">
             <div className="px-8 pt-6">
