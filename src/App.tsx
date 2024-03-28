@@ -3,6 +3,8 @@ import { useTheme } from "@mui/material/styles";
 import { ChartsTextStyle, LineChart, axisClasses } from "@mui/x-charts";
 import Title from "./Title";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "./context/store";
 
 // Generate Sales Data
 function createData(
@@ -32,6 +34,11 @@ function App() {
     type: "",
     status: false,
   });
+
+  const { revenue, users, newSignUps, retention } = useSelector(
+    (state: RootState) => state
+  );
+
   const theme = useTheme();
   return (
     <main className="flex h-full w-screen">
@@ -356,10 +363,53 @@ function App() {
             </button>
           </div>
           <div className="w-full mt-8 flex gap-y-[20px] sm:gap-y-[33px] justify-between flex-wrap">
-            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
-            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
-            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
-            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] bg-white rounded-2xl shadow-sm drop-shadow-sm"></div>
+            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] px-6 py-5 bg-white rounded-2xl shadow-sm flex flex-col justify-between drop-shadow-sm">
+              <div>
+                <p className="text-zinc-600 mb-1">Revenue</p>
+                <p className="text-3xl">{"$" + revenue.toLocaleString()}</p>
+              </div>
+              <div className="flex gap-x-3">
+                <div className="bg-green-200 text-green-700 text-sm w-[60px] rounded-full py-[2px] font-semibold text-center">
+                  +45%
+                </div>
+                <div className="text-sm text-zinc-500">From 4.6%</div>
+              </div>
+            </div>
+            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] px-6 py-5 bg-white rounded-2xl shadow-sm flex flex-col justify-between drop-shadow-sm">
+              <div>
+                <p className="text-zinc-600 mb-1">Users</p>
+                <p className="text-3xl">{users + "%"}</p>
+              </div>
+              <div className="flex gap-x-3">
+                <div className="bg-red-200 text-red-700 text-sm w-[60px] rounded-full py-[2px] font-semibold text-center">
+                  -17%
+                </div>
+                <div className="text-sm text-zinc-500">From 4.6%</div>
+              </div>
+            </div>
+            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] px-6 py-5 bg-white rounded-2xl shadow-sm flex flex-col justify-between drop-shadow-sm">
+              <div>
+                <p className="text-zinc-600 mb-1">New Signups</p>
+                <p className="text-3xl">{newSignUps}</p>
+              </div>
+              <div className="flex gap-x-3">
+                <div className="bg-gray-200 text-gray-700 text-sm w-[60px] rounded-full py-[2px] font-semibold text-center">
+                  0.00
+                </div>
+              </div>
+            </div>
+            <div className="w-full sm:w-[48%] xl:w-[23%] h-[175px] px-6 py-5 bg-white rounded-2xl shadow-sm flex flex-col justify-between drop-shadow-sm">
+              <div>
+                <p className="text-zinc-600 mb-1">Retention</p>
+                <p className="text-3xl">{retention + "%"}</p>
+              </div>
+              <div className="flex gap-x-3">
+                <div className="bg-green-200 text-green-700 text-sm w-[60px] rounded-full py-[2px] font-semibold text-center">
+                  +0.6%
+                </div>
+                <div className="text-sm text-zinc-500">From 4.6%</div>
+              </div>
+            </div>
           </div>
           <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] drop-shadow-sm">
             <div className="px-8 pt-6">
