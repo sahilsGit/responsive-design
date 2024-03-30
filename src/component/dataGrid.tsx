@@ -1,8 +1,7 @@
 import Title from "@/Title";
-import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 
-const mockData: GridRowsProp = [
+export const mockData: GridRowsProp = [
   {
     id: 1,
     source: "Zepplin",
@@ -50,7 +49,7 @@ const mockData: GridRowsProp = [
   },
 ];
 
-const columns: GridColDef[] = [
+export const columns: GridColDef[] = [
   {
     field: "source",
     headerName: "Source",
@@ -85,32 +84,30 @@ const columns: GridColDef[] = [
 
 const Grid = () => {
   return (
-    <Box>
-      <div className="">
+    <div className="flex w-full flex-col items-center overflow-x-scroll justify-center">
+      <div className="w-full">
         <Title>Installed Apps</Title>
       </div>
-
-      <Box
-        height={380}
-        sx={{
-          "& .MuiDataGrid-root": {
-            borderBottom: "none",
-            borderLeft: "none",
-            borderRight: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-            paddingLeft: "30px",
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            borderBottom: "none",
-            paddingLeft: "30px",
-          },
-        }}
-      >
-        <DataGrid rows={mockData} columns={columns} />
-      </Box>
-    </Box>
+      <div className="h-[1px] w-full bg-neutral-200"></div>
+      <div className="w-[400px] sm:w-[600px] lg:w-[800px] px-4 xl:w-[1100px] overflow-scroll">
+        <DataGrid
+          style={{
+            border: "none",
+          }}
+          rows={mockData}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5]}
+          disableRowSelectionOnClick
+        />
+      </div>
+    </div>
   );
 };
 

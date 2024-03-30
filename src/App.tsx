@@ -1,11 +1,11 @@
 import "./App.css";
 import { useTheme } from "@mui/material/styles";
-import { ChartsTextStyle, LineChart, axisClasses } from "@mui/x-charts";
+import { ChartsTextStyle, LineChart } from "@mui/x-charts";
 import Title from "./Title";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./context/store";
 import Grid from "./component/dataGrid";
+import { useEffect, useState } from "react";
 
 // Generate Sales Data
 function createData(
@@ -39,6 +39,12 @@ function App() {
   const { revenue, users, newSignUps, retention } = useSelector(
     (state: RootState) => state
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "SET_REVENUE", payload: 13000 });
+  }, []);
 
   const theme = useTheme();
   return (
@@ -565,10 +571,13 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] drop-shadow-sm">
+          <div
+            id="reference"
+            className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] drop-shadow-sm"
+          >
             <Title>Performance</Title>
             <div className="h-[1px] w-full bg-neutral-200"></div>
-            <div className="h-[350px] px-4 mt-7 mb-[100px] flex flex-col justify-center items-center">
+            <div className="h-[350px] px-4 mt-2 flex flex-col justify-center items-center">
               <LineChart
                 dataset={data}
                 xAxis={[
@@ -581,10 +590,6 @@ function App() {
                 ]}
                 yAxis={[
                   {
-                    labelStyle: {
-                      ...(theme.typography.body1 as ChartsTextStyle),
-                      fill: theme.palette.text.primary,
-                    },
                     tickLabelStyle: theme.typography.body2 as ChartsTextStyle,
                     max: 400,
                     tickNumber: 3,
@@ -597,22 +602,11 @@ function App() {
                     color: theme.palette.primary.dark,
                   },
                 ]}
-                sx={{
-                  [`.${axisClasses.root} line`]: {
-                    stroke: theme.palette.text.secondary,
-                  },
-                  [`.${axisClasses.root} text`]: {
-                    fill: theme.palette.text.secondary,
-                  },
-                  [`& .${axisClasses.left} .${axisClasses.label}`]: {
-                    transform: "translateX(-25px)",
-                  },
-                }}
               />
               <p className="text-sm text-neutral-600">Facebook</p>
             </div>
           </div>
-          <div className="w-full mt-8 bg-white rounded-2xl shadow-sm h-[470px] mb-8 drop-shadow-sm">
+          <div className="w-inherit mt-8 bg-white mb-8 overflow-scroll rounded-2xl shadow-sm h-[470px] drop-shadow-sm">
             <Grid />
           </div>
         </div>

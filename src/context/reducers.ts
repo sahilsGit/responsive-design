@@ -1,5 +1,6 @@
 // Refer to ./types.ts
 
+import { initialState } from "./store";
 import {
   AppState,
   AppActions,
@@ -8,13 +9,6 @@ import {
   SET_NEW_SIGNUPS,
   SET_RETENTION,
 } from "./types";
-
-const initialState: AppState = {
-  revenue: 0,
-  users: 0,
-  newSignUps: 0,
-  retention: 0,
-};
 
 const reducer = (
   state: AppState = initialState,
